@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.subheading{
+@apply text-3xl pb-5 font-semibold dark:text-white underline underline-offset-4 w-full
+}
+.link{
+    @apply hover:underline text-blue-400 dark:text-blue-600
+}
