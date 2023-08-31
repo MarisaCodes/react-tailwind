@@ -1,34 +1,43 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import {
-  atelierSulphurpoolDark,
-  atelierLakesideLight,
-} from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CodeBlock from "./components/CodeBlock";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
-  const [codeTheme, setCodeTheme] = useState("dark");
   let elArr: HTMLDivElement[] = [];
   const codeEls = useRef(elArr);
-
-  const code = `
-  const Home = () => {
-    return ( 
+  const toggleThemeCode = `
+  // Usage
+  import { useState } from "react";
+  import { ThemeContext } from "./context/ThemeContext";
+  import ToggleTheme from "./components/ToggleTheme";
+  
+  const [mode, setMode] = useState("dark");
+  const Component = () => {
+    return (
+    <ThemeContext.Provider value={mode}>
+    // later you can consume this context in deeply nested components without prop drilling
+      // ...code
+      <ToggleTheme mode={mode} setMode={setMode} />
+      // ...code
       <h1>Hello world!</h1>
+      // ...code
+    </ThemeContext.Provider>
      );
   }
    
-  export default Home;`.trim();
+  export default Component;`.trim();
   return (
     <ThemeContext.Provider value={mode}>
       <div className={mode}>
         <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
           <header className="p-4">
             <nav className="flex justify-between items-center">
-              <h1 className="text-2xl font-semibold dark:text-white">My App</h1>
+              <h1 className="text-2xl font-semibold dark:text-white">
+                React-Tailwind
+              </h1>
               <ToggleTheme mode={mode} setMode={setMode} />
             </nav>
           </header>
@@ -43,8 +52,11 @@ const Home = () => {
                 background and light text. Toggle between dark mode and light
                 mode using the button above.
               </p>
-              <p className="mt-2 text-blue-400 dark:text-blue-600">
-                <a href="#" className="hover:underline">
+              <p className="mt-2">
+                <a
+                  href="#"
+                  className="hover:underline text-blue-400 dark:text-blue-600"
+                >
                   Learn more
                 </a>
               </p>
@@ -55,34 +67,27 @@ const Home = () => {
               </h2>
               <ToggleTheme mode={mode} setMode={setMode} />
               <div className="flex flex-col">
-                <div className="w-full flex items-center justify-between bg-gray-700 p-2 mt-4 rounded-t-lg">
-                  <span className="text-gray-400">JSX</span>
-                  <div className="flex gap-5 items-center">
-                    <GradientButton
-                      from="from-purple-500"
-                      to="to-blue-500"
-                      customClasses="after:content-['copy'] focus:text-emerald-500 focus:after:content-['copied']"
-                      handleClick={() =>
-                        navigator.clipboard.writeText(
-                          codeEls.current[0]!.innerText
-                        )
-                      }
-                    />
-
-                    <ToggleTheme mode={codeTheme} setMode={setCodeTheme} />
-                  </div>
-                </div>
-                <div ref={(e) => codeEls.current.push(e!)}>
-                  <SyntaxHighlighter
-                    language="jsx"
-                    style={
-                      codeTheme === "dark"
-                        ? atelierSulphurpoolDark
-                        : atelierLakesideLight
-                    }
+                <CodeBlock codeEls={codeEls} code={toggleThemeCode} />
+                <div className="pt-5 pb-4 flex flex-col gap-5">
+                  <a
+                    className="hover:underline text-blue-400 dark:text-blue-600 w-fit"
+                    href="https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually"
                   >
-                    {code}
-                  </SyntaxHighlighter>
+                    Tailwind css dark mode `class` strategy
+                  </a>
+                  <a
+                    href="https://react.dev/learn/passing-data-deeply-with-context"
+                    className="hover:underline text-blue-400 dark:text-blue-600 w-fit"
+                  >
+                    Learn React Context
+                  </a>
+
+                  <p className="font-bold">
+                    Note: Changing the context within the provider wrapper won't
+                    work as expected with the tailwind css `class` strategy.
+                    This is intuitive and not a problem but I faced this issue
+                    while coding so I thought to mention it.
+                  </p>
                 </div>
               </div>
             </div>

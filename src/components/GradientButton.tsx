@@ -14,13 +14,11 @@ const GradientButton = ({
 }) => {
   return (
     <div
-      className={`
-      bg-gradient-to-br z-10 border-transparent ${from} p-0.5 ${to} rounded-lg flex items-center justify-center dark:text-white hover:text-white`}
+      className={`bg-gradient-to-br z-10 border-transparent ${from} p-0.5 ${to} rounded-lg flex items-center justify-center dark:text-white`}
     >
       <button
         onClick={handleClick}
-        className={`
-      bg-white h-min py-2 px-4 ${customClasses} dark:bg-gray-900 hover:bg-gradient-to-br ${from} ${to} rounded-md`}
+        className={`bg-white h-min py-2 px-4 ${customClasses} dark:bg-gray-900 hover:bg-gradient-to-br ${from} ${to} rounded-md hover:text-white`}
       >
         {children}
       </button>
