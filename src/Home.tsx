@@ -3,8 +3,12 @@ import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
+import Navbar from "./components/navbar/Navbar";
+import Brand from "./components/navbar/Brand";
 import reactLogo from "./assets/react.svg";
-
+import Burger from "./components/navbar/Burger";
+import Menu from "./components/navbar/Menu";
+import Navactions from "./components/navbar/Navactions";
 const Home = () => {
   const [mode, setMode] = useState("dark");
   let elArr: HTMLDivElement[] = [];
@@ -33,7 +37,7 @@ const Home = () => {
   return (
     <ThemeContext.Provider value={mode}>
       <div className={mode}>
-        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
+        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300 overflow-visible">
           <header className="p-4">
             <nav className="flex justify-between items-center">
               <h1 className="text-2xl font-semibold dark:text-white">
@@ -115,59 +119,36 @@ const Home = () => {
             </div>
             <div>
               <h2 className="subheading">Navbar</h2>
-              <nav className="flex items-center justify-between pr-0 sm:px-2 md:px-1 md:justify-normal dark:bg-gray-800 dark:rounded-lg h-14 dark:border-0 border-b border-gray-600">
-                <div className="p-2">
-                  <a
-                    href="https://react.dev"
-                    className="flex gap-2 items-center"
-                    target="_blank"
-                  >
-                    <img src={reactLogo} alt="" />
-                    <span className="dark:text-white text-lg">React</span>
+              <Navbar>
+                <Brand logo={reactLogo} text="React" />
+                <Burger />
+                <Menu>
+                  <a href="#" className="link">
+                    About
                   </a>
-                </div>
-                <div className="flex-grow h-full block md:hidden">
-                  <div className="h-full ml-auto w-fit px-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-lg cursor-pointer flex justify-center flex-col gap-2">
-                    <div className="h-0.5 w-8 rounded-full dark:bg-gray-300 bg-gray-800"></div>
-                    <div className="h-0.5 w-8 rounded-full dark:bg-gray-300 bg-gray-800"></div>
-                    <div className="h-0.5 w-8 rounded-full dark:bg-gray-300 bg-gray-800"></div>
-                  </div>
-                </div>
-                <div className="lg:flex-grow flex items-center relative h-full md:ml-5">
-                  <label
-                    htmlFor="more"
-                    className="h-full items-center hidden lg:hidden md:flex cursor-pointer"
-                  >
-                    More &#x25BC;
-                  </label>
-                  <input
-                    type="checkbox"
-                    name="more"
-                    id="more"
-                    className="hidden peer"
-                  />
-                  <div className="lg:flex-grow lg:flex justify-center lg:gap-14 hidden peer-checked:bg-white z-10 peer-checked:border-2 peer-checked:border-gray-400 peer-checked:dark:bg-gray-700 peer-checked:dark:text-white peer-checked:p-4 peer-checked:rounded-lg lg:border-0 peer-checked:flex-col peer-checked:gap-3 sm:peer-checked:flex peer-checked:absolute peer-checked:top-10">
+                  <a href="#" className="link">
+                    Services
+                  </a>
+                  <a href="#" className="link">
+                    Contact
+                  </a>
                     <a href="#" className="link">
-                      About
-                    </a>
-                    <a href="#" className="link">
-                      Services
-                    </a>
-                    <a href="#" className="link">
-                      Contact
-                    </a>
-                  </div>
-                </div>
-
-                <div className="hidden md:flex lg:flex-grow-0 md:flex-grow md:justify-end items-center lg:gap-5 md:gap-2">
-                  <GradientButton from="from-red-500" to="to-yellow-500">
+                    Redeem
+                  </a>
+                  
+                </Menu>
+                <Navactions>
+                  <GradientButton from="from-red-500"  to="to-yellow-500">
                     Sign Up
                   </GradientButton>
-                  <GradientButton from="from-blue-500" to="to-green-500">
-                    Login
+                  <GradientButton from="from-cyan-500" to="to-blue-500">
+                  Login
                   </GradientButton>
-                </div>
-              </nav>
+                  <GradientButton from="from-purple-500" to="to-blue-500">
+                    Action
+                  </GradientButton>
+                </Navactions>
+              </Navbar>
             </div>
             <div className="pt-10"></div>
           </main>
