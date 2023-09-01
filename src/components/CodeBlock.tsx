@@ -9,9 +9,11 @@ import {
 
 const CodeBlock = ({
   codeEls,
+  index,
   code,
 }: {
   codeEls: MutableRefObject<HTMLDivElement[]>;
+  index: number;
   code: string;
 }) => {
   const [codeTheme, setCodeTheme] = useState("dark");
@@ -26,7 +28,7 @@ const CodeBlock = ({
             to="to-blue-500"
             customClasses="after:content-['copy'] focus:text-emerald-500 focus:after:content-['copied']"
             handleClick={() =>
-              navigator.clipboard.writeText(codeEls.current[0]!.innerText)
+              navigator.clipboard.writeText(codeEls.current[index]!.innerText)
             }
           />
 

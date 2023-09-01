@@ -3,41 +3,23 @@ import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
-import Navbar from "./components/navbar/Navbar";
+import Nav from "./components/navbar/Nav";
 import Brand from "./components/navbar/Brand";
-import reactLogo from "./assets/react.svg";
 import Burger from "./components/navbar/Burger";
 import Menu from "./components/navbar/Menu";
 import Navactions from "./components/navbar/Navactions";
+import reactLogo from "./assets/react.svg";
+import { navbarCode, toggleThemeCode } from "./codeStrings";
+
 const Home = () => {
   const [mode, setMode] = useState("dark");
   let elArr: HTMLDivElement[] = [];
   const codeEls = useRef(elArr);
-  const toggleThemeCode = `
-  // Usage
-  import { useState } from "react";
-  import { ThemeContext } from "./context/ThemeContext";
-  import ToggleTheme from "./components/ToggleTheme";
-  
-  const [mode, setMode] = useState("dark");
-  const Component = () => {
-    return (
-    <ThemeContext.Provider value={mode}>
-    // later you can consume this context in deeply nested components without prop drilling
-      // ...code
-      <ToggleTheme mode={mode} setMode={setMode} />
-      // ...code
-      <h1>Hello world!</h1>
-      // ...code
-    </ThemeContext.Provider>
-     );
-  }
-   
-  export default Component;`.trim();
+
   return (
     <ThemeContext.Provider value={mode}>
       <div className={mode}>
-        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300 overflow-visible">
+        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
           <header className="p-4">
             <nav className="flex justify-between items-center">
               <h1 className="text-2xl font-semibold dark:text-white">
@@ -67,7 +49,7 @@ const Home = () => {
               <h2 className="subheading">Toggle Theme</h2>
               <ToggleTheme mode={mode} setMode={setMode} />
               <div className="flex flex-col">
-                <CodeBlock codeEls={codeEls} code={toggleThemeCode} />
+                <CodeBlock codeEls={codeEls} code={toggleThemeCode} index={0} />
                 <div className="pt-5 pb-4 flex flex-col gap-5">
                   <a
                     className="link"
@@ -81,7 +63,53 @@ const Home = () => {
                   >
                     Learn React Context
                   </a>
+                  <div>
+                    <h3 className="text-3xl dark:text-white text-gray-800 pb-3">
+                      What you should do:
+                    </h3>
+                    <p className="text-lg">
+                      You should use react context or any state management
+                      strategy to provide the current theme state (i.e. either
+                      dark mode or light mode). This step makes sense if you are
+                      using tailwind class strategy for managing the theme. The
+                      end goal of this step is to create a wrapper div with
+                      className that is equal to the current theme (either
+                      "dark" or "").
+                    </p>
+                  </div>
 
+                  <div>
+                    <h3 className="text-3xl dark:text-white text-gray-800 pb-3">
+                      What you don't need to do:
+                    </h3>
+                    <p className="text-lg">
+                      The element{" "}
+                      <strong className="text-blue-500">
+                        &lt;ToggleTheme mode=&#123;mode&#125;
+                        setMode=&#123;setMode&#125; /&gt;
+                      </strong>{" "}
+                      is provided as an export so you do not need to hardcode
+                      it. You have to provide{" "}
+                      <strong className="text-blue-500">mode</strong> and{" "}
+                      <strong className="text-blue-500">setMode</strong> however
+                      which are created using{" "}
+                      <strong className="text-blue-500">useState</strong>.
+                      <br />
+                      <br />
+                      PS: In my opinion using context makes the DX easier. If
+                      you are using Next.js then the fact that you have to use a
+                      client component for your wrappers shouldn't scare you
+                      away because client components can have server component
+                      children. I am not an expert on this topic but the
+                      following link can certainly help:{" "}
+                      <a
+                        href="https://github.com/vercel/next.js/discussions/43153"
+                        className="link"
+                      >
+                        Client components having server rendered children?
+                      </a>
+                    </p>
+                  </div>
                   <p className="font-bold">
                     Note: Changing the context within the provider wrapper won't
                     work as expected with the tailwind css `class` strategy.
@@ -90,6 +118,39 @@ const Home = () => {
                   </p>
                 </div>
               </div>
+            </div>
+            <div>
+              <h2 className="subheading">Navbar</h2>
+              <Nav>
+                <Brand logo={reactLogo} text="React" />
+                <Burger />
+                <Menu>
+                  <a href="#" className="link">
+                    About
+                  </a>
+                  <a href="#" className="link">
+                    Services
+                  </a>
+                  <a href="#" className="link">
+                    Contact
+                  </a>
+                  <a href="#" className="link">
+                    Redeem
+                  </a>
+                </Menu>
+                <Navactions>
+                  <GradientButton from="from-red-500" to="to-yellow-500">
+                    Sign Up
+                  </GradientButton>
+                  <GradientButton from="from-cyan-500" to="to-blue-500">
+                    Login
+                  </GradientButton>
+                  <GradientButton from="from-purple-500" to="to-blue-500">
+                    Action
+                  </GradientButton>
+                </Navactions>
+              </Nav>
+              <CodeBlock codeEls={codeEls} code={navbarCode} index={1} />
             </div>
             <div className="flex gap-5 flex-wrap items-center justify-center md:justify-normal">
               <h2 className="subheading">Gradient Button</h2>
@@ -117,40 +178,6 @@ const Home = () => {
                 </GradientButton>
               </div>
             </div>
-            <div>
-              <h2 className="subheading">Navbar</h2>
-              <Navbar>
-                <Brand logo={reactLogo} text="React" />
-                <Burger />
-                <Menu>
-                  <a href="#" className="link">
-                    About
-                  </a>
-                  <a href="#" className="link">
-                    Services
-                  </a>
-                  <a href="#" className="link">
-                    Contact
-                  </a>
-                    <a href="#" className="link">
-                    Redeem
-                  </a>
-                  
-                </Menu>
-                <Navactions>
-                  <GradientButton from="from-red-500"  to="to-yellow-500">
-                    Sign Up
-                  </GradientButton>
-                  <GradientButton from="from-cyan-500" to="to-blue-500">
-                  Login
-                  </GradientButton>
-                  <GradientButton from="from-purple-500" to="to-blue-500">
-                    Action
-                  </GradientButton>
-                </Navactions>
-              </Navbar>
-            </div>
-            <div className="pt-10"></div>
           </main>
         </div>
       </div>
