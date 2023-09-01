@@ -1,18 +1,17 @@
 # React ~ Tailwind
 
-<div style="display:flex; gap:10px; justify-content:center;align-items: center">
+<p align="center">
    <img src="./src/assets/react.svg" width=40 />
-   <div style="font-size: 40px">+</div>
    <img src="./src/assets/tailwind.svg" width=40 />
-</div>
+</p>
 
 # Toggle Theme (dark mode/light mode)
 
-<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px;">
+<p align="center">
    <img src="./readme/toggletheme.png" style="border-radius:10px" />
    <img src="./readme/lightmode.png" style="border-radius:10px" />
    <img src="./readme/darkmode.png" style="border-radius:10px" />
-</div>
+</p>
 
 ## What you should do:
 
