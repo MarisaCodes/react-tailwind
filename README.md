@@ -58,3 +58,7 @@ const Home = () => {
   );
 };
 ```
+
+## Deployed docs on netlify
+
+- [Current project build](https://main--sparkly-toffee-d7c9cc.netlify.app/)
