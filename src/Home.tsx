@@ -51,18 +51,6 @@ const Home = () => {
               <div className="flex flex-col">
                 <CodeBlock codeEls={codeEls} code={toggleThemeCode} index={0} />
                 <div className="pt-5 pb-4 flex flex-col gap-5">
-                  <a
-                    className="link"
-                    href="https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually"
-                  >
-                    Tailwind css dark mode `class` strategy
-                  </a>
-                  <a
-                    href="https://react.dev/learn/passing-data-deeply-with-context"
-                    className="link"
-                  >
-                    Learn React Context
-                  </a>
                   <div>
                     <h3 className="text-3xl dark:text-white text-gray-800 pb-3">
                       What you should do:
@@ -110,12 +98,18 @@ const Home = () => {
                       </a>
                     </p>
                   </div>
-                  <p className="font-bold">
-                    Note: Changing the context within the provider wrapper won't
-                    work as expected with the tailwind css `class` strategy.
-                    This is intuitive and not a problem but I faced this issue
-                    while coding so I thought to mention it.
-                  </p>
+                  <a
+                    className="link"
+                    href="https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually"
+                  >
+                    Tailwind css dark mode `class` strategy
+                  </a>
+                  <a
+                    href="https://react.dev/learn/passing-data-deeply-with-context"
+                    className="link"
+                  >
+                    Learn React Context
+                  </a>
                 </div>
               </div>
             </div>

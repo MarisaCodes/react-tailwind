@@ -1,27 +1,61 @@
-# React + TypeScript + Vite
+# React ~ Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div style="display:flex; gap:10px; justify-content:center;align-items: center">
+   <img src="./src/assets/react.svg" width=40 />
+   <div style="font-size: 40px">+</div>
+   <img src="./src/assets/tailwind.svg" width=40 />
+</div>
 
-Currently, two official plugins are available:
+# Toggle Theme (dark mode/light mode)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px;">
+   <img src="./readme/toggletheme.png" style="border-radius:10px" />
+   <img src="./readme/lightmode.png" style="border-radius:10px" />
+   <img src="./readme/darkmode.png" style="border-radius:10px" />
+</div>
 
-## Expanding the ESLint configuration
+## What you should do:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+You should use react context or any state management strategy to provide the current theme state (i.e. either dark mode or light mode). This step makes sense if you are using tailwind class strategy for managing the theme. The end goal of this step is to create a wrapper div with className that is equal to the current theme (either "dark" or "").
 
-- Configure the top-level `parserOptions` property like this:
+## What you don't need to do:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+The element `<ToggleTheme mode={mode} setMode={setMode}\>` is provided as an export so you do not need to hardcode it. You have to provide `mode` and `setMode` however which are created using `useState`.
+
+PS: In my opinion using context makes the DX easier. If you are using Next.js then the fact that you have to use a client component for your wrappers shouldn't scare you away because client components can have server component children. I am not an expert on this topic but the following link can certainly help:
+[Client components having server rendered children?](https://github.com/vercel/next.js/discussions/43153)
+
+[Tailwind css dark mode `class` strategy](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually)
+
+[Learn React Context](https://react.dev/learn/passing-data-deeply-with-context)
+
+### Example code:
+
+```jsx
+import ToggleTheme from "./components/ToggleTheme";
+import { ThemeContext } from "./context/ThemeContext";
+
+const Home = () => {
+  const [mode, setMode] = useState("dark");
+
+  return (
+    <ThemeContext.Provider value={mode}>
+      {/* code ... */}
+      <div className={mode}>
+        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
+          <header className="p-4">
+            <nav className="flex justify-between items-center">
+              <h1 className="text-2xl font-semibold dark:text-white">
+                React-Tailwind
+              </h1>
+              <ToggleTheme mode={mode} setMode={setMode} />
+            </nav>
+          </header>
+          {/* code ... */}
+        </div>
+      </div>
+      {/* code ... */}
+    </ThemeContext.Provider>
+  );
+};
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
