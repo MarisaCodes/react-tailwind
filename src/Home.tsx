@@ -23,13 +23,6 @@ import Menu from "./components/navbar/Menu";
 import ghLogo from "./assets/github.svg";
 import npmLogo from "./assets/npm.svg";
 import BlockNavItem from "./components/navbar/BlockNavItem";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import {
-  atelierLakesideLight,
-  atelierSulphurpoolDark,
-  monokai,
-  solarizedLight,
-} from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
