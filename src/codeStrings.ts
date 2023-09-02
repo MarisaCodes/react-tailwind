@@ -27,8 +27,7 @@ const Home = () => {
 }
  `.trim();
 
-
-export const navbarCode = `
+export const navbar1Code = `
 import GradientButton from "./GradientButton";
 import Burger from "./navbar/Burger";
 import Menu from "./navbar/Menu";
@@ -38,14 +37,13 @@ import reactLogo from "../assets/react.svg";
 import Brand from "./navbar/Brand";
 import Avatar from "./Avatar";
 import avatar from "../assets/tailwind.svg";
-
 const Navbar = () => {
   return (
     <Nav>
       <Brand logo={reactLogo} text="React" />
       <Burger />
       <Menu>
-        <a href="#" className="link">
+        <a href="#" className="link lg:py-6">
           About
         </a>
         <a href="#" className="link">
@@ -65,10 +63,7 @@ const Navbar = () => {
         <GradientButton from="from-pink-500" to="to-zinc-500">
           Login
         </GradientButton>
-        {/* <GradientButton from="from-zinc-500" to="to-yellow-500">
-          Action
-        </GradientButton> */}
-        <Avatar avatar={avatar} objectFit="object-scale-down">
+        <Avatar avatar={avatar}>
           <a href="#" className="link">
             link 1
           </a>
@@ -84,8 +79,8 @@ const Navbar = () => {
         </Avatar>
       </Navactions>
     </Nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
 `.trim();

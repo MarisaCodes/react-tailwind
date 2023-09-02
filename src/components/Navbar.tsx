@@ -33,10 +33,7 @@ const Navbar = () => {
         <GradientButton from="from-pink-500" to="to-zinc-500">
           Login
         </GradientButton>
-        {/* <GradientButton from="from-zinc-500" to="to-yellow-500">
-          Action
-        </GradientButton> */}
-        <Avatar avatar={avatar} objectFit="object-scale-down">
+        <Avatar avatar={avatar}>
           <a href="#" className="link">
             link 1
           </a>

@@ -1,14 +1,14 @@
 import { MouseEventHandler, ReactNode } from "react";
 const GradientButton = ({
   children,
-  from,
-  to,
+  from = "from-blue-500",
+  to = "to-cyan-500",
   handleClick,
   customClasses,
 }: {
   children?: ReactNode;
-  from: string;
-  to: string;
+  from?: string;
+  to?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   customClasses?: string;
 }) => {

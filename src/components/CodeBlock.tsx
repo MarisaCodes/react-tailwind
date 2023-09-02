@@ -35,9 +35,12 @@ const CodeBlock = ({
           <ToggleTheme mode={codeTheme} setMode={setCodeTheme} />
         </div>
       </div>
-      <div ref={(e) => codeEls.current.push(e!)}>
+      <div
+        ref={(e) => codeEls.current.push(e!)}
+        className=" max-h-96 overflow-y-auto mb-6"
+      >
         <SyntaxHighlighter
-          language="jsx"
+          language="typescript"
           style={
             codeTheme === "dark" ? atelierSulphurpoolDark : atelierLakesideLight
           }

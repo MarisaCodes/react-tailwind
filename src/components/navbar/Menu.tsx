@@ -40,7 +40,7 @@ const Menu = ({
           </label>
           <input type="checkbox" name={id} id={id} className="hidden peer" />
           <div
-            className={`w-full h-fit lg:h-full flex flex-col gap-3 text-center py-3 md:py-0 md:hidden lg:flex lg:flex-row ${gapOverride} items-center peer-checked:flex peer-checked:absolute peer-checked:text-left peer-checked:w-fit peer-checked:bg-white peer-checked:dark:bg-gray-800 peer-checked:p-4 peer-checked:px-10 peer-checked:rounded-md peer-checked:z-20 peer-checked:border-2 peer-checked:border-gray-400 peer-checked:dark:border-gray-700`}
+            className={`w-full h-fit lg:h-full whitespace-nowrap flex flex-col gap-3 text-center py-3 md:py-0 md:hidden lg:flex lg:flex-row ${gapOverride} items-center peer-checked:flex peer-checked:absolute peer-checked:text-left peer-checked:w-fit peer-checked:bg-white peer-checked:dark:bg-gray-800 peer-checked:p-4 peer-checked:px-10 peer-checked:rounded-md peer-checked:z-20 peer-checked:border-2 peer-checked:border-gray-400 peer-checked:dark:border-gray-700`}
           >
             {children}
           </div>

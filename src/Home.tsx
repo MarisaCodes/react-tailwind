@@ -3,7 +3,7 @@ import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
-import { navbarCode, toggleThemeCode } from "./codeStrings";
+import { navbar1Code, toggleThemeCode } from "./codeStrings";
 import Navbar from "./components/Navbar";
 import Nav from "./components/navbar/Nav";
 import Burger from "./components/navbar/Burger";
@@ -16,6 +16,11 @@ import Menu from "./components/navbar/Menu";
 import ghLogo from "./assets/github.svg";
 import npmLogo from "./assets/npm.svg";
 import BlockNavItem from "./components/navbar/BlockNavItem";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import {
+  atelierLakesideLight,
+  atelierSulphurpoolDark,
+} from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
@@ -58,11 +63,7 @@ const Home = () => {
                 <GradientButton from="from-yellow-500" to="to-zinc-500">
                   Get started
                 </GradientButton>
-                <Avatar
-                  avatar={tailwindLogo}
-                  objectFit="object-scale-down"
-                  id="home-avatar"
-                >
+                <Avatar avatar={tailwindLogo} id="home-avatar">
                   <a href="https://tailwindcss.com/" className="link">
                     Tailwind
                   </a>
@@ -143,8 +144,241 @@ const Home = () => {
             <div>
               <h2 className="subheading">Navbar</h2>
               <Navbar />
-              <CodeBlock codeEls={codeEls} code={navbarCode} index={1} />
+              <CodeBlock codeEls={codeEls} code={navbar1Code} index={1} />
+              <div>
+                <h3 className="text-3xl dark:text-white underline">
+                  Components and props
+                </h3>
+                <div className="my-10">
+                  <h3 className="text-4xl my-5 text-blue-500 font-bold">
+                    {"<Nav />"}
+                  </h3>
+                  <SyntaxHighlighter
+                    language="typescript"
+                    style={
+                      mode === "dark"
+                        ? atelierSulphurpoolDark
+                        : atelierLakesideLight
+                    }
+                  >
+                    {`
+const Nav = ({
+  children,
+  id = "main-menu",
+}: {
+  children: ReactNode;
+  id?: string;
+}) => {
+  // Nav component code ...
+}
+`.trim()}
+                  </SyntaxHighlighter>
+                  <p className="my-10 text-lg">
+                    The component{" "}
+                    <strong className="text-blue-500 font-bold">
+                      {"<Nav>{children}</Nav>"}
+                    </strong>
+                    has an optional{" "}
+                    <strong className="text-blue-500 font-bold">prop </strong>
+                    called{" "}
+                    <strong className="text-blue-500 font-bold"> id</strong>.
+                    This{" "}
+                    <strong className="text-blue-500 font-bold"> id</strong>{" "}
+                    prop has a default value. The value (whether default or
+                    passed as a prop by you) is fed into a checkbox input. This
+                    is used when a user is on phone, they can access the main
+                    navigation menu using a burger button that has pure css
+                    functionality, save for detecting outside clicks. You do not
+                    need to concern yourself with it if your app uses only one
+                    navbar component. Since it already has a default fallback
+                    value you don't have to worry about passing anything here
+                    for <strong className="text-blue-500 font-bold"> id</strong>
+                    . Otherwise if you need more than one navbar for whatever
+                    reason then in any navbar after the first one you can pass
+                    the <strong className="text-blue-500 font-bold"> id</strong>{" "}
+                    prop but it should be different from the default which is
+                    <strong className="text-yellow-500 font-bold">
+                      {" "}
+                      "main-menu"
+                    </strong>{" "}
+                    (goes without saying you shouldn't reuse ids, basic html).
+                  </p>
+                  <h3 className="text-4xl my-5 text-blue-500 font-bold">
+                    {"<Brand />"}
+                  </h3>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={
+                      mode === "dark"
+                        ? atelierSulphurpoolDark
+                        : atelierLakesideLight
+                    }
+                  >
+                    {`
+const Brand = ({
+  logo,
+  text,
+  width = 45,
+  objectFit = "object-scale-down",
+}: {
+  logo: string;
+  text: string;
+  width?: number;
+  objectFit?: string;
+}) => {}
+`.trim()}
+                  </SyntaxHighlighter>
+                  <p className="my-10 text-lg">
+                    This is the{" "}
+                    <strong className="text-blue-500">
+                      {" "}
+                      {"<Brand logo={logo} text={text}/>"}{" "}
+                    </strong>
+                    component. <strong className="text-blue-500"> logo </strong>
+                    and <strong className="text-blue-500"> text </strong> are
+                    necessary props. In the above navbar example I used the
+                    react logo
+                    <img
+                      src={reactLogo}
+                      className="mx-2 inline"
+                      width={20}
+                      alt=""
+                    />
+                    and the text was <strong>React</strong>. The{" "}
+                    <strong className="text-blue-500">width</strong>
+                    and <strong className="text-blue-500">objectFit</strong>
+                    are optional props, their default values are
+                    <strong className="text-yellow-500"> 45 </strong>
+                    and a tailwind class{" "}
+                    <strong className="text-yellow-500">
+                      "object-scale-down"{" "}
+                    </strong>
+                    respectively
+                  </p>
+                  <h3 className="text-4xl my-5 text-blue-500 font-bold">
+                    {"<Burger />"}
+                  </h3>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={
+                      mode === "dark"
+                        ? atelierSulphurpoolDark
+                        : atelierLakesideLight
+                    }
+                  >
+                    {`
+const Burger = ({ htmlFor = "main-menu" }: { htmlFor?: string }) => {}
+`.trim()}
+                  </SyntaxHighlighter>
+                  <p className="my-10 text-lg">
+                    This is the{" "}
+                    <strong className="text-blue-500"> {"<Burger />"} </strong>
+                    component. It contains a clickable{" "}
+                    <strong className="text-blue-500">
+                      {"<label htmlFor={htmlFor}></label>"}{" "}
+                    </strong>
+                    element that corresponds to the checkbox input element in
+                    the <strong className="text-blue-500">{"<Nav />"} </strong>
+                    component. As before, you need not pass any props here
+                    except if you have more than one navbar to help the html
+                    differentiate between the inputs so that they don't all have
+                    the same id.
+                  </p>
+
+                  <h3 className="text-4xl my-5 text-blue-500 font-bold">
+                    {"<Menu /> and <Navactions />"}
+                  </h3>
+
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={
+                      mode === "dark"
+                        ? atelierSulphurpoolDark
+                        : atelierLakesideLight
+                    }
+                  >
+                    {`
+const Menu = ({
+  children,
+  id = "more",
+  gapOverride = "lg:gap-7",
+}: {
+  children: ReactNode;
+  id?: string;
+  gapOverride?: string;
+}) => {}
+`.trim()}
+                  </SyntaxHighlighter>
+                  <p className="my-10 text-lg">
+                    Again, as before, the{" "}
+                    <strong className="text-blue-500">id </strong>
+                    prop serves the same purpose for checkbox identification.
+                    You need not pass anything unless you have multiple navbars.
+                    And again, avoid the default if you didn't override it in
+                    the first navbar and make it unique. This time, the button
+                    is labelled `more` and it appears for tablets. You can play
+                    with your browser and resize your window to see the
+                    responsiveness. The{" "}
+                    <strong className="text-blue-500">children </strong>
+                    of <strong className="text-blue-500">{"<Menu />"} </strong>
+                    are supposed to be{" "}
+                    <strong className="text-blue-500">
+                      {
+                        '<a href="#" className="hover:underline text-blue-400 dark:text-blue-600">a tags</a>'
+                      }
+                    </strong>
+                    . However, you can override the style in the above example
+                    by changing the gap size at the lg break-point. This is
+                    discussed more clearly in the next example, for the above
+                    type of navbar you don't need to do anything else.
+                  </p>
+                </div>
+              </div>
+              <Nav id="blockitems-example">
+                <Brand logo={tailwindLogo} text="Tailwind" />
+                <Burger htmlFor="blockitems-example" />
+                <Menu id="blockitems-more" gapOverride="lg:gap-0">
+                  <BlockNavItem>
+                    <a href="#" className="flex items-center gap-3 lg:py-1">
+                      <span className="hidden lg:block">Github</span>
+                      <img
+                        src={ghLogo}
+                        alt=""
+                        className="max-w-none py-1 md:py-0"
+                        width={35}
+                      />
+                    </a>
+                  </BlockNavItem>
+                  <BlockNavItem>
+                    <a href="#" className="flex items-center gap-3">
+                      <img src={npmLogo} alt="" width={35} />
+                    </a>
+                  </BlockNavItem>
+                  <BlockNavItem>
+                    <a href="#" className="flex items-center gap-3">
+                      Random link
+                    </a>
+                  </BlockNavItem>
+                </Menu>
+                <Navactions>
+                  <GradientButton from="from-red-500" to="to-zinc-500">
+                    Action
+                  </GradientButton>
+                  <Avatar avatar={reactLogo} id="block-example">
+                    <a href="#" className="link w-full">
+                      link 1
+                    </a>
+                    <a href="#" className="link w-full">
+                      link 2
+                    </a>
+                    <a href="#" className="link w-full">
+                      link 3
+                    </a>
+                  </Avatar>
+                </Navactions>
+              </Nav>
             </div>
+
             <div className="flex gap-5 flex-wrap items-center justify-center md:justify-normal">
               <h2 className="subheading">Gradient Button</h2>
               <GradientButton from="from-emerald-300" to="to-blue-500">

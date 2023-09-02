@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 const Avatar = ({
   children,
   avatar,
-  objectFit = "object-cover",
+  objectFit = "object-scale-down",
   width = 45,
   id = "avatar",
 }: {
@@ -51,7 +51,7 @@ const Avatar = ({
       />
 
       {children && (
-        <div className="hidden peer-checked:flex items-center flex-col gap-5 w-fit p-4 px-10 absolute right-0 bg-white border-gray-400 dark:bg-gray-800 border-2 dark:border-gray-700 rounded-md z-20">
+        <div className="hidden peer-checked:flex items-center flex-col gap-5 p-4 px-6 whitespace-nowrap absolute right-0 bg-white border-gray-400 dark:bg-gray-800 border-2 dark:border-gray-700 rounded-md z-20">
           {children}
         </div>
       )}
