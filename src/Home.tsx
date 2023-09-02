@@ -3,7 +3,14 @@ import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
-import { navbar1Code, toggleThemeCode } from "./codeStrings";
+import {
+  brandCode,
+  burgerCode,
+  menuCode,
+  navCode,
+  navbar1Code,
+  toggleThemeCode,
+} from "./codeStrings";
 import Navbar from "./components/Navbar";
 import Nav from "./components/navbar/Nav";
 import Burger from "./components/navbar/Burger";
@@ -20,10 +27,14 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import {
   atelierLakesideLight,
   atelierSulphurpoolDark,
+  monokai,
+  solarizedLight,
 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
+  const [codeTheme, setCodeTheme] = useState("dark");
+
   let elArr: HTMLDivElement[] = [];
   const codeEls = useRef(elArr);
 
@@ -77,7 +88,13 @@ const Home = () => {
               <h2 className="subheading">Toggle Theme</h2>
               <ToggleTheme mode={mode} setMode={setMode} />
               <div className="flex flex-col">
-                <CodeBlock codeEls={codeEls} code={toggleThemeCode} index={0} />
+                <CodeBlock
+                  codeEls={codeEls}
+                  code={toggleThemeCode}
+                  index={0}
+                  codeTheme={codeTheme}
+                  setCodeTheme={setCodeTheme}
+                />
                 <div className="pt-5 pb-4 flex flex-col gap-5">
                   <div>
                     <h3 className="text-3xl dark:text-white text-gray-800 pb-3">
@@ -144,7 +161,13 @@ const Home = () => {
             <div>
               <h2 className="subheading">Navbar</h2>
               <Navbar />
-              <CodeBlock codeEls={codeEls} code={navbar1Code} index={1} />
+              <CodeBlock
+                codeEls={codeEls}
+                code={navbar1Code}
+                index={1}
+                codeTheme={codeTheme}
+                setCodeTheme={setCodeTheme}
+              />
               <div>
                 <h3 className="text-3xl dark:text-white underline">
                   Components and props
@@ -153,26 +176,13 @@ const Home = () => {
                   <h3 className="text-4xl my-5 text-blue-500 font-bold">
                     {"<Nav />"}
                   </h3>
-                  <SyntaxHighlighter
-                    language="typescript"
-                    style={
-                      mode === "dark"
-                        ? atelierSulphurpoolDark
-                        : atelierLakesideLight
-                    }
-                  >
-                    {`
-const Nav = ({
-  children,
-  id = "main-menu",
-}: {
-  children: ReactNode;
-  id?: string;
-}) => {
-  // Nav component code ...
-}
-`.trim()}
-                  </SyntaxHighlighter>
+                  <CodeBlock
+                    codeEls={codeEls}
+                    codeTheme={codeTheme}
+                    setCodeTheme={setCodeTheme}
+                    index={2}
+                    code={navCode}
+                  />
                   <p className="my-10 text-lg">
                     The component{" "}
                     <strong className="text-blue-500 font-bold">
@@ -206,28 +216,13 @@ const Nav = ({
                   <h3 className="text-4xl my-5 text-blue-500 font-bold">
                     {"<Brand />"}
                   </h3>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={
-                      mode === "dark"
-                        ? atelierSulphurpoolDark
-                        : atelierLakesideLight
-                    }
-                  >
-                    {`
-const Brand = ({
-  logo,
-  text,
-  width = 45,
-  objectFit = "object-scale-down",
-}: {
-  logo: string;
-  text: string;
-  width?: number;
-  objectFit?: string;
-}) => {}
-`.trim()}
-                  </SyntaxHighlighter>
+                  <CodeBlock
+                    codeEls={codeEls}
+                    codeTheme={codeTheme}
+                    setCodeTheme={setCodeTheme}
+                    index={3}
+                    code={brandCode}
+                  />
                   <p className="my-10 text-lg">
                     This is the{" "}
                     <strong className="text-blue-500">
@@ -258,18 +253,14 @@ const Brand = ({
                   <h3 className="text-4xl my-5 text-blue-500 font-bold">
                     {"<Burger />"}
                   </h3>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={
-                      mode === "dark"
-                        ? atelierSulphurpoolDark
-                        : atelierLakesideLight
-                    }
-                  >
-                    {`
-const Burger = ({ htmlFor = "main-menu" }: { htmlFor?: string }) => {}
-`.trim()}
-                  </SyntaxHighlighter>
+                  <CodeBlock
+                    codeEls={codeEls}
+                    codeTheme={codeTheme}
+                    setCodeTheme={setCodeTheme}
+                    index={4}
+                    code={burgerCode}
+                  />
+
                   <p className="my-10 text-lg">
                     This is the{" "}
                     <strong className="text-blue-500"> {"<Burger />"} </strong>
@@ -284,31 +275,17 @@ const Burger = ({ htmlFor = "main-menu" }: { htmlFor?: string }) => {}
                     differentiate between the inputs so that they don't all have
                     the same id.
                   </p>
-
                   <h3 className="text-4xl my-5 text-blue-500 font-bold">
                     {"<Menu /> and <Navactions />"}
                   </h3>
+                  <CodeBlock
+                    codeEls={codeEls}
+                    codeTheme={codeTheme}
+                    setCodeTheme={setCodeTheme}
+                    index={5}
+                    code={menuCode}
+                  />
 
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={
-                      mode === "dark"
-                        ? atelierSulphurpoolDark
-                        : atelierLakesideLight
-                    }
-                  >
-                    {`
-const Menu = ({
-  children,
-  id = "more",
-  gapOverride = "lg:gap-7",
-}: {
-  children: ReactNode;
-  id?: string;
-  gapOverride?: string;
-}) => {}
-`.trim()}
-                  </SyntaxHighlighter>
                   <p className="my-10 text-lg">
                     Again, as before, the{" "}
                     <strong className="text-blue-500">id </strong>

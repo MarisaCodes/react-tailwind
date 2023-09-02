@@ -1,4 +1,4 @@
-import { useState, MutableRefObject } from "react";
+import {  MutableRefObject, Dispatch, SetStateAction } from "react";
 import GradientButton from "./GradientButton";
 import ToggleTheme from "./ToggleTheme";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -11,12 +11,15 @@ const CodeBlock = ({
   codeEls,
   index,
   code,
+  codeTheme,
+  setCodeTheme
 }: {
   codeEls: MutableRefObject<HTMLDivElement[]>;
   index: number;
   code: string;
+  codeTheme:string;
+  setCodeTheme:Dispatch<SetStateAction<string>>
 }) => {
-  const [codeTheme, setCodeTheme] = useState("dark");
 
   return (
     <>

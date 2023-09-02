@@ -84,3 +84,41 @@ const Navbar = () => {
 
 export default Navbar;
 `.trim();
+
+export const navCode = `const Nav = ({
+  children,
+  id = "main-menu",
+}: {
+  children: ReactNode;
+  id?: string;
+}) => {
+  // Nav component code ...
+}
+`.trim();
+export const brandCode = `const Brand = ({
+  logo,
+  text,
+  width = 45,
+  objectFit = "object-scale-down",
+}: {
+  logo: string;
+  text: string;
+  width?: number;
+  objectFit?: string;
+}) => {}
+`.trim();
+export const burgerCode = `
+const Burger = ({ htmlFor = "main-menu" }: { htmlFor?: string }) => {}
+`.trim();
+
+export const menuCode = `
+const Menu = ({
+  children,
+  id = "more",
+  gapOverride = "lg:gap-7",
+}: {
+  children: ReactNode;
+  id?: string;
+  gapOverride?: string;
+}) => {}
+`.trim();
