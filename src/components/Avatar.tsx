@@ -30,7 +30,7 @@ const Avatar = ({
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       <label htmlFor={id}>
         <img
           src={avatar}
@@ -51,7 +51,7 @@ const Avatar = ({
       />
 
       {children && (
-        <div className="hidden peer-checked:flex items-center flex-col gap-5 w-fit p-4 px-10 absolute bg-white border-gray-400 dark:bg-gray-800 border-2 dark:border-gray-700 rounded-md z-20">
+        <div className="hidden peer-checked:flex items-center flex-col gap-5 w-fit p-4 px-10 absolute right-0 bg-white border-gray-400 dark:bg-gray-800 border-2 dark:border-gray-700 rounded-md z-20">
           {children}
         </div>
       )}

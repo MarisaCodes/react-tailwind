@@ -13,6 +13,9 @@ import tailwindLogo from "./assets/tailwind.svg";
 import Navactions from "./components/navbar/Navactions";
 import Avatar from "./components/Avatar";
 import Menu from "./components/navbar/Menu";
+import ghLogo from "./assets/github.svg";
+import npmLogo from "./assets/npm.svg";
+import BlockNavItem from "./components/navbar/BlockNavItem";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
@@ -27,6 +30,29 @@ const Home = () => {
             <Nav id="home-navbar">
               <Brand logo={reactLogo} text="React-Tailwind" />
               <Burger htmlFor="home-navbar" />
+              <Menu id="home-more" gapOverride="lg:gap-0">
+                <BlockNavItem>
+                  <a href="#" className="flex gap-3 items-center">
+                    <span className="hidden lg:block">Github repo</span>
+                    <img
+                      className="flex max-w-none py-1 md:py-0"
+                      src={ghLogo}
+                      alt="github logo"
+                      width={30}
+                    />
+                  </a>
+                </BlockNavItem>
+                <BlockNavItem>
+                  <a href="#">
+                    <img
+                      src={npmLogo}
+                      alt="npm logo"
+                      className="max-w-none"
+                      width={50}
+                    />
+                  </a>
+                </BlockNavItem>
+              </Menu>
               <Navactions>
                 <ToggleTheme mode={mode} setMode={setMode} />
                 <GradientButton from="from-yellow-500" to="to-zinc-500">
@@ -36,7 +62,11 @@ const Home = () => {
                   avatar={tailwindLogo}
                   objectFit="object-scale-down"
                   id="home-avatar"
-                />
+                >
+                  <a href="https://tailwindcss.com/" className="link">
+                    Tailwind
+                  </a>
+                </Avatar>
               </Navactions>
             </Nav>
           </header>

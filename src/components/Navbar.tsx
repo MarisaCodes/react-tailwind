@@ -13,7 +13,7 @@ const Navbar = () => {
       <Brand logo={reactLogo} text="React" />
       <Burger />
       <Menu>
-        <a href="#" className="link">
+        <a href="#" className="link lg:py-6">
           About
         </a>
         <a href="#" className="link">
@@ -26,7 +26,31 @@ const Navbar = () => {
           link
         </a>
       </Menu>
-
+      <Navactions>
+        <GradientButton from="from-red-500" to="to-yellow-500">
+          Sign Up
+        </GradientButton>
+        <GradientButton from="from-pink-500" to="to-zinc-500">
+          Login
+        </GradientButton>
+        {/* <GradientButton from="from-zinc-500" to="to-yellow-500">
+          Action
+        </GradientButton> */}
+        <Avatar avatar={avatar} objectFit="object-scale-down">
+          <a href="#" className="link">
+            link 1
+          </a>
+          <a href="#" className="link">
+            link 2
+          </a>
+          <a href="#" className="link">
+            link 3
+          </a>
+          <GradientButton from="from-zinc-500" to="to-yellow-500">
+            Action
+          </GradientButton>
+        </Avatar>
+      </Navactions>
     </Nav>
   );
 };

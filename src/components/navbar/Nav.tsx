@@ -17,9 +17,12 @@ const Nav = ({
       }
     }
     document.addEventListener("click", (e) => handleDoc(e));
+    return () => {
+      document.removeEventListener("click", (e) => handleDoc(e));
+    };
   }, []);
   return (
-    <nav className="w-full bg-white border-b border-b-gray-800 dark:border-b-gray-600 dark:bg-gray-800 flex flex-wrap items-center lg:justify-between z-50 px-2">
+    <nav className="w-full bg-white border-b border-b-gray-800 dark:border-b-gray-600 dark:bg-gray-800 flex flex-wrap items-stretch lg:justify-between z-50 px-2 py-0 md:py-2 lg:py-0">
       <input
         type="checkbox"
         name={id}
