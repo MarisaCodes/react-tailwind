@@ -3,13 +3,8 @@ import ToggleTheme from "./components/ToggleTheme";
 import { ThemeContext } from "./context/ThemeContext";
 import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
-import Nav from "./components/navbar/Nav";
-import Brand from "./components/navbar/Brand";
-import Burger from "./components/navbar/Burger";
-import Menu from "./components/navbar/Menu";
-import Navactions from "./components/navbar/Navactions";
-import reactLogo from "./assets/react.svg";
 import { navbarCode, toggleThemeCode } from "./codeStrings";
+import Navbar from "./components/Navbar";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
@@ -115,35 +110,7 @@ const Home = () => {
             </div>
             <div>
               <h2 className="subheading">Navbar</h2>
-              <Nav>
-                <Brand logo={reactLogo} text="React" />
-                <Burger />
-                <Menu>
-                  <a href="#" className="link">
-                    About
-                  </a>
-                  <a href="#" className="link">
-                    Services
-                  </a>
-                  <a href="#" className="link">
-                    Contact
-                  </a>
-                  <a href="#" className="link">
-                    Redeem
-                  </a>
-                </Menu>
-                <Navactions>
-                  <GradientButton from="from-red-500" to="to-yellow-500">
-                    Sign Up
-                  </GradientButton>
-                  <GradientButton from="from-cyan-500" to="to-blue-500">
-                    Login
-                  </GradientButton>
-                  <GradientButton from="from-purple-500" to="to-blue-500">
-                    Action
-                  </GradientButton>
-                </Navactions>
-              </Nav>
+              <Navbar />
               <CodeBlock codeEls={codeEls} code={navbarCode} index={1} />
             </div>
             <div className="flex gap-5 flex-wrap items-center justify-center md:justify-normal">
