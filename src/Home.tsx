@@ -8,7 +8,10 @@ import {
   burgerCode,
   menuCode,
   navCode,
+  navactionCode,
   navbar1Code,
+  navbar2Code,
+  navbar3Code,
   toggleThemeCode,
 } from "./codeStrings";
 import Navbar from "./components/Navbar";
@@ -23,6 +26,8 @@ import Menu from "./components/navbar/Menu";
 import ghLogo from "./assets/github.svg";
 import npmLogo from "./assets/npm.svg";
 import BlockNavItem from "./components/navbar/BlockNavItem";
+import Navbar2 from "./components/Navbar2";
+import Navbar3 from "./components/Navbar3";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
@@ -162,9 +167,7 @@ const Home = () => {
                 setCodeTheme={setCodeTheme}
               />
               <div>
-                <h3 className="text-3xl dark:text-white underline">
-                  Components and props
-                </h3>
+                <h3 className="subsubheading">Components and props</h3>
                 <div className="my-10">
                   <h3 className="text-4xl my-5 text-blue-500 font-bold">
                     {"<Nav />"}
@@ -302,51 +305,47 @@ const Home = () => {
                     discussed more clearly in the next example, for the above
                     type of navbar you don't need to do anything else.
                   </p>
+
+                  <CodeBlock
+                    codeEls={codeEls}
+                    codeTheme={codeTheme}
+                    setCodeTheme={setCodeTheme}
+                    index={6}
+                    code={navactionCode}
+                  />
+                  <p className="my-10">
+                    The above code is for the Navactions component. It is
+                    simple. The{" "}
+                    <strong className="text-blue-500">children</strong> should
+                    be{" "}
+                    <strong className="text-blue-500">{"<Button />"} </strong>
+                    or{" "}
+                    <strong className="text-blue-500">
+                      {"<GradientButton />"}{" "}
+                    </strong>
+                    components.
+                  </p>
                 </div>
+                <h3 className="subsubheading my-10">
+                  Navbar with override style
+                </h3>
               </div>
-              <Nav id="blockitems-example">
-                <Brand logo={tailwindLogo} text="Tailwind" />
-                <Burger htmlFor="blockitems-example" />
-                <Menu id="blockitems-more" gapOverride="lg:gap-0">
-                  <BlockNavItem>
-                    <a href="#" className="flex items-center gap-3 lg:py-1">
-                      <span className="hidden lg:block">Github</span>
-                      <img
-                        src={ghLogo}
-                        alt=""
-                        className="max-w-none py-1 md:py-0"
-                        width={35}
-                      />
-                    </a>
-                  </BlockNavItem>
-                  <BlockNavItem>
-                    <a href="#" className="flex items-center gap-3">
-                      <img src={npmLogo} alt="" width={35} />
-                    </a>
-                  </BlockNavItem>
-                  <BlockNavItem>
-                    <a href="#" className="flex items-center gap-3">
-                      Random link
-                    </a>
-                  </BlockNavItem>
-                </Menu>
-                <Navactions>
-                  <GradientButton from="from-red-500" to="to-zinc-500">
-                    Action
-                  </GradientButton>
-                  <Avatar avatar={reactLogo} id="block-example">
-                    <a href="#" className="link w-full">
-                      link 1
-                    </a>
-                    <a href="#" className="link w-full">
-                      link 2
-                    </a>
-                    <a href="#" className="link w-full">
-                      link 3
-                    </a>
-                  </Avatar>
-                </Navactions>
-              </Nav>
+              <Navbar2 />
+              <CodeBlock
+                codeEls={codeEls}
+                codeTheme={codeTheme}
+                setCodeTheme={setCodeTheme}
+                index={7}
+                code={navbar2Code}
+              />
+              <Navbar3 />
+              <CodeBlock
+                codeEls={codeEls}
+                codeTheme={codeTheme}
+                setCodeTheme={setCodeTheme}
+                index={8}
+                code={navbar3Code}
+              />
             </div>
 
             <div className="flex gap-5 flex-wrap items-center justify-center md:justify-normal">

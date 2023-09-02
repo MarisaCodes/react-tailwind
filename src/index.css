@@ -8,3 +8,6 @@
 .link{
     @apply hover:underline text-blue-400 dark:text-blue-600
 }
+.subsubheading{
+    @apply text-3xl dark:text-white underline
+}
