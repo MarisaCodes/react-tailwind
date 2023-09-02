@@ -1,6 +1,6 @@
 const Brand = ({ logo, text }: { logo: string; text: string }) => {
   return (
-    <div className="h-12 px-2 flex items-center">
+    <div className="h-12 flex items-center">
       <a
         href="https://react.dev"
         className="flex gap-2 items-center"

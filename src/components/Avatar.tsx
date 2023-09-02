@@ -5,11 +5,13 @@ const Avatar = ({
   avatar,
   objectFit = "object-cover",
   width = 45,
+  id = "avatar",
 }: {
-  children: ReactNode;
+  children?: ReactNode;
   avatar: string;
   objectFit?: string;
   width?: number;
+  id?: string;
 }) => {
   const menu = useRef(null as HTMLInputElement | null);
   const [checked, setChecked] = useState(false);
@@ -29,26 +31,30 @@ const Avatar = ({
 
   return (
     <div>
-      <label htmlFor="avatar">
+      <label htmlFor={id}>
         <img
           src={avatar}
           alt="user avatar/profile picture"
           width={width}
           className={`rounded-full aspect-square ${objectFit} cursor-pointer outline outline-2 outline-offset-2 ${
-            checked ? "outline-blue-500" : "outline-gray-500"
+            checked && children ? "outline-blue-500" : "outline-gray-500"
           }`}
         />
       </label>
+
       <input
         type="checkbox"
-        name="avatar"
-        id="avatar"
+        name={id}
+        id={id}
         className="hidden peer group"
         ref={menu}
       />
-      <div className="hidden peer-checked:flex items-center flex-col gap-5 w-fit p-4 px-10 absolute dark:bg-gray-800 border-2 border-gray-700 rounded-md z-20">
-        {children}
-      </div>
+
+      {children && (
+        <div className="hidden peer-checked:flex items-center flex-col gap-5 w-fit p-4 px-10 absolute bg-white border-gray-400 dark:bg-gray-800 border-2 dark:border-gray-700 rounded-md z-20">
+          {children}
+        </div>
+      )}
     </div>
   );
 };

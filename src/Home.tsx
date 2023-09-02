@@ -5,6 +5,14 @@ import GradientButton from "./components/GradientButton";
 import CodeBlock from "./components/CodeBlock";
 import { navbarCode, toggleThemeCode } from "./codeStrings";
 import Navbar from "./components/Navbar";
+import Nav from "./components/navbar/Nav";
+import Burger from "./components/navbar/Burger";
+import Brand from "./components/navbar/Brand";
+import reactLogo from "./assets/react.svg";
+import tailwindLogo from "./assets/tailwind.svg";
+import Navactions from "./components/navbar/Navactions";
+import Avatar from "./components/Avatar";
+import Menu from "./components/navbar/Menu";
 
 const Home = () => {
   const [mode, setMode] = useState("dark");
@@ -13,33 +21,27 @@ const Home = () => {
 
   return (
     <ThemeContext.Provider value={mode}>
-      <div className={mode}>
-        <div className="dark:bg-gray-900 bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
-          <header className="p-4">
-            <nav className="flex justify-between items-center">
-              <h1 className="text-2xl font-semibold dark:text-white">
-                React-Tailwind
-              </h1>
-              <ToggleTheme mode={mode} setMode={setMode} />
-            </nav>
+      <div className={mode + " h-full"}>
+        <div className="dark:bg-gray-900 h-full bg-slate-100 min-h-screen dark:text-gray-400 text-gray-800 transition-colors duration-300">
+          <header className="sticky top-0 z-50">
+            <Nav id="home-navbar">
+              <Brand logo={reactLogo} text="React-Tailwind" />
+              <Burger htmlFor="home-navbar" />
+              <Navactions>
+                <ToggleTheme mode={mode} setMode={setMode} />
+                <GradientButton from="from-yellow-500" to="to-zinc-500">
+                  Get started
+                </GradientButton>
+                <Avatar
+                  avatar={tailwindLogo}
+                  objectFit="object-scale-down"
+                  id="home-avatar"
+                />
+              </Navactions>
+            </Nav>
           </header>
 
           <main className="flex flex-col gap-10 md:px-32 md:py-10 p-4">
-            <div className="rounded-lg shadow-lg p-6 dark:bg-gray-800 bg-white">
-              <h2 className="text-lg font-semibold dark:text-white">
-                Welcome to My App
-              </h2>
-              <p className="mt-2">
-                This is a visually appealing layout with a dark slate blue
-                background and light text. Toggle between dark mode and light
-                mode using the button above.
-              </p>
-              <p className="mt-2">
-                <a href="#" className="link">
-                  Learn more
-                </a>
-              </p>
-            </div>
             <div>
               <h2 className="subheading">Toggle Theme</h2>
               <ToggleTheme mode={mode} setMode={setMode} />
